@@ -444,6 +444,7 @@ public class Person {
 
   /* Methods removed for brevity */
 }
+```
 
 This example is identical to the example we discussed in the previous section, with _lock-X_ and _lock-Y_.  Here we have two objects of type `Person`, and these objects are used as locks as shown below.
 
