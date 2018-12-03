@@ -705,15 +705,12 @@ Most applications provide a cancel button that allows the user to cancel a long 
 Java provides another method of locking defined by the interface `Lock` ([Java Doc](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/locks/Lock.html)).  This interface is implemented by the following classes:
 
 1. `ReentrantLock` ([Java Doc](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/locks/ReentrantLock.html))
-
 1. `ReentrantReadWriteLock.ReadLock` ([Java Doc](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/locks/ReentrantReadWriteLock.ReadLock.html))
-
 1. `ReentrantReadWriteLock.WriteLock.html` ([Java Doc](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/locks/ReentrantReadWriteLock.WriteLock.html))
 
 These implementation of the `Lock` interface can be used in similar fashion to the `synchronized` block but the developer needs to obtain the lock and then release it.  This is quite important as if a lock is never released, this lock cannot be acquired by another thread and thus may block an entire application.  The `Lock` provides two important improvements over the `synchronized` block:
 
 1. `tryLock()` ([Java Doc](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/locks/Lock.html#tryLock()))
-
 1. `tryLock(long time, TimeUnit unit)` ([Java Doc](http://docs.oracle.com/javase/7/docs/api/java/util/concurrent/locks/Lock.html#tryLock(long,%20java.util.concurrent.TimeUnit)))
 
 Both methods returns `true` if the lock was acquired, `false` otherwise.  Therefore, if the thread tries to acquire a lock which is already acquired by another thread, then these methods will simply return `false` and the programmer can deal with this without having to worry about blocking the whole application.  Furthermore, in such event, the thread can try to acquire the lock again at a later stage.  The second method allows a wait period before it gives up.  In this case the thread waits until the given time expires before it gives up and thus this method returns `false`.
